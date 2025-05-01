@@ -1,0 +1,80 @@
+const nunjucks = require('nunjucks')
+const fs = require('fs')
+const path = require("node:path");
+
+class BaseController {
+  constructor(req, nunjucksExtensions) {
+    this.req = req
+    this.template = ''
+    this.data = {}
+    this.css = []
+    this.js = []
+    
+    this.extensions = nunjucksExtensions
+  }
+
+  setTemplate(templateName) {
+    this.template = templateName
+    return this
+  }
+  
+  add(key, value){
+    this.data[key] = value
+    return this
+  }
+
+  addCss(path){
+    if(!this.css.includes(path)){
+      this.css.push(path)
+    }
+    return this
+  }
+
+  addJs(path){
+    if(!this.js.includes(path)){
+      this.js.push(path)
+    }
+    return this
+  }
+  
+  put(name, html){
+    if (this.extensions?.placeholder) {
+      this.extensions.placeholder.put(name, html)
+    }
+    return this
+  }
+  
+  async handle() {
+    return this.render()
+  }
+  
+  renderFile(templatePath, vars={}){
+    // const fullPath = path.resolve(templatePath)
+    // if(fs.existsSync(fullPath)){
+    //   return nunjucks.render(templatePath, vars)
+    // }
+    // return templatePath+ ' templatePath not found '+fullPath
+    return nunjucks.render(templatePath, vars)
+  }
+  
+  makePartial(partialName, vars={}){
+    //find partial @path, ~path, ../path, ./path
+    const templatePath = `/partials/${partialName}.njk`
+    return this.renderFile(templatePath, vars)
+  }
+  
+  render() {
+    const vars = {
+      ...this.data,
+      css: this.css,
+      js: this.js
+    }
+    const result = this.renderFile(this.template, vars)
+    Object.values(this.extensions).forEach(extension => {
+      if(typeof extension.reset === 'function'){ extension.reset() }
+    })
+    return result
+  }
+}
+
+module.exports = BaseController

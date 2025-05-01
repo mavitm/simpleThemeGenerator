@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Varsayılan Başlık{% endblock %}</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  {% if css %}
+    {% for file in css %}
+      <link rel="stylesheet" href="{{ file }}">
+    {% endfor %}
+  {% endif %}
+</head>
+<body>
+  {% include "partials/header.njk" %}
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  
+  {% placeholder test %}
+  
+  {% if js %}
+    {% for file in js %}
+      <script src="{{ file }}"></script>
+    {% endfor %}
+    {% else %}
+    js yoktu
+  {% endif %}
+</body>
+</html>
