@@ -8,9 +8,14 @@ class HomeController extends BaseController {
       username: 'Ayhan',
       date: new Date().toLocaleDateString()
     }
-    this.css = ['/assets/css/home.css']
-    this.js = ['/assets/js/home.js']
+    this.addCss('/assets/css/home.css')
   }
+  
+  render() {
+    
+    return super.render();
+  }
+
 }
 
 module.exports = HomeController

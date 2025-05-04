@@ -1,0 +1,7 @@
+{% macro formFloating(label, name, type='text', value='', required=false) %}
+    <div class="form-floating mb-3">
+        <input type="{{ type }}" name="{{ name }}" class="form-control" value="{{ value | escape }}"
+               required="{{ required }}">
+        <label for="floatingInput">{{ label }}</label>
+    </div>
+{% endmacro %}

@@ -15,6 +15,16 @@ const { capitalize } = require('./helpers/utils')
 const app = express()
 const PORT = 3000
 
+const originalStderr = process.stderr.write
+process.stderr.write = function (chunk, encoding, callback) {
+  const str = chunk.toString()
+  if (str.indexOf('Deprecation Warning') > -1 || str.indexOf('deprecation warnings') > -1) {
+    return true // yut
+  }
+  return originalStderr.call(process.stderr, chunk, encoding, callback)
+}
+
+
 // LiveReload
 const liveReloadServer = livereload.createServer()
 app.use(connectLivereload())
@@ -34,12 +44,19 @@ const customExtensions = customizedNunjucks(nunjucksEnv)
 chokidar.watch('scss/**/*.scss').on('change', (filePath) => {
   console.log(`🎨 SCSS değişti: ${filePath}`)
   compileSass()
+  liveReloadServer.refresh('/')
 })
 compileSass()
 
 // Template değişiklikleri için watcher
 chokidar.watch('views/**/*.njk').on('change', (filePath) => {
   console.log(`📝 Template değişti: ${filePath}`)
+  liveReloadServer.refresh('/')
+})
+
+chokidar.watch('controllers/**/*.js').on('change', (filePath) => {
+  console.log(`🧠 Controller değişti: ${filePath}`)
+  delete require.cache[require.resolve(path.resolve(filePath))]
   liveReloadServer.refresh('/')
 })
 

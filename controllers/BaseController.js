@@ -8,7 +8,10 @@ class BaseController {
     this.template = ''
     this.data = {}
     this.css = []
-    this.js = []
+    this.js = [
+        '/assets/libs/anime/lib/anime.iife.min.js',
+        '/assets/js/main.js'
+    ]
     
     this.extensions = nunjucksExtensions
   }
