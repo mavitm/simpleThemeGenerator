@@ -1,0 +1,75 @@
+$themeColorMap: (
+        ui-bg:       #ffffff,
+        ui-text:     #111827,
+        ui-muted:    #6b7280,
+        ui-primary:  #6366f1,
+        ui-secondary:#10b981,
+        ui-danger:   #ef4444,
+        ui-warning:  #f59e0b,
+        ui-success:  #22c55e,
+        ui-info:     #0ea5e9,
+        ui-border:   #e5e7eb,
+        ui-surface:  #f9fafb,
+
+        // STATİK RENKLER
+        ui-white: #f9fafb,
+        ui-static-white: #ffffff,
+        ui-static-black: #000000
+);
+
+$themeDarkColorMap: (
+        ui-bg:       #111827,
+        ui-text:     #f9fafb,
+        ui-muted:    #9ca3af,
+        ui-primary:  #6366f1,
+        ui-secondary:#34d399,
+        ui-danger:   #f87171,
+        ui-warning:  #fbbf24,
+        ui-success:  #4ade80,
+        ui-info:     #38bdf8,
+        ui-border:   #374151,
+        ui-surface:  #1f2937,
+
+        // STATİK RENKLER
+        ui-white: #f9fafb,
+        ui-static-white: #ffffff,
+        ui-static-black: #000000
+);
+
+
+// Light
+:root, :root.light {
+  @each $key, $value in $themeColorMap {
+    --#{$key}: #{$value};
+    --#{$key}-hover: #{darken($value, 10%)};
+    --#{$key}-light: #{lighten($value, 10%)};
+    --#{$key}-25: #{generate-alpha($value, 0.25)};
+    --#{$key}-50: #{generate-alpha($value, 0.5)};
+    --#{$key}-75: #{generate-alpha($value, 0.75)};
+  }
+}
+
+// Dark
+:root.dark {
+  @each $key, $value in $themeDarkColorMap {
+    --#{$key}: #{$value};
+    --#{$key}-hover: #{darken($value, 10%)};
+    --#{$key}-light: #{lighten($value, 10%)};
+    --#{$key}-25: #{generate-alpha($value, 0.25)};
+    --#{$key}-50: #{generate-alpha($value, 0.5)};
+    --#{$key}-75: #{generate-alpha($value, 0.75)};
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @each $key, $value in $themeDarkColorMap {
+      --#{$key}: #{$value};
+      --#{$key}-hover: #{darken($value, 10%)};
+      --#{$key}-light: #{lighten($value, 10%)};
+      --#{$key}-25: #{generate-alpha($value, 0.25)};
+      --#{$key}-50: #{generate-alpha($value, 0.5)};
+      --#{$key}-75: #{generate-alpha($value, 0.75)};
+    }
+  }
+}

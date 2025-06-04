@@ -19,6 +19,8 @@ if (type === 'page') {
     const className = capitalize(name) + 'Controller'
     const controllerFile = path.join(__dirname, 'controllers', `${className}.js`)
     const viewFile = path.join(__dirname, 'views', `${name}.njk`)
+    const viewFileCss = path.join(__dirname, 'public/assets/css', `${name}.css`)
+    const viewFileJs = path.join(__dirname, 'public/assets/js', `${name}.js`)
 
     const controllerContent = `const BaseController = require('./BaseController')
 
@@ -57,6 +59,8 @@ module.exports = ${className}
 
     fs.writeFileSync(controllerFile, controllerContent)
     fs.writeFileSync(viewFile, viewContent)
+    fs.writeFileSync(viewFileCss, '')
+    fs.writeFileSync(viewFileJs, '')
 
     console.log(`✓ ${className}.js ve ${name}.njk oluşturuldu.`)
 }

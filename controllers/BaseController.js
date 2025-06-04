@@ -5,11 +5,16 @@ const path = require("node:path");
 class BaseController {
   constructor(req, nunjucksExtensions) {
     this.req = req
+    this.layout = 'default.njk'
     this.template = ''
     this.data = {}
-    this.css = []
+    this.css = [
+      '/assets/libs/bootstrap-5.3.6-dist/css/bootstrap.min.css'
+    ]
     this.js = [
         '/assets/libs/anime/lib/anime.iife.min.js',
+        '/assets/libs/bootstrap-5.3.6-dist/js/popper.min.js',
+        '/assets/libs/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js',
         '/assets/js/main.js'
     ]
     
@@ -72,7 +77,8 @@ class BaseController {
       css: this.css,
       js: this.js
     }
-    const result = this.renderFile(this.template, vars)
+    vars.page = this.renderFile(this.template, vars)
+    const result = this.renderFile('layouts/'+this.layout, vars)
     Object.values(this.extensions).forEach(extension => {
       if(typeof extension.reset === 'function'){ extension.reset() }
     })

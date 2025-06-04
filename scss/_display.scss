@@ -1,0 +1,22 @@
+.d-dark,.d-dark-inline,.d-dark-flex,.d-light,.d-light-inline,.d-light-flex{
+  display: none;
+}
+.dark .d-dark{
+  display: block !important;
+}
+.dark .d-dark-inline{
+  display: inline-block !important;
+}
+.dark .d-dark-flex{
+  display: flex !important;
+}
+
+.light .d-light{
+  display: block !important;
+}
+.light .d-light-inline{
+  display: inline-block !important;
+}
+.light .d-light-flex{
+  display: flex !important;
+}

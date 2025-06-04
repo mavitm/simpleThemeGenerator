@@ -1,0 +1,56 @@
+.icon-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: .5rem;
+}
+.icon-list li{
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: var(--ui-surface);
+    border: 1px solid var(--ui-border);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    &:hover{
+        background-color: var(--ui-primary-light);
+    }
+}
+
+.custom-tooltip {
+    --bs-tooltip-bg: var(--ui-primary);
+    --bs-tooltip-color: var(--bs-white);
+}
+
+#icon-modal{
+    #icon-size{
+        width: 100%;
+        font-size: 1rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .icon{
+            cursor: pointer;
+        }
+    }
+    .html-codes{
+        display: flex;
+        flex-direction: column;
+        textarea{
+            width: 100%;
+            max-width: 100%;
+            border: none;
+            resize: none;
+            &:active,&:focus{
+                border: none;
+                outline: none;
+            }
+        }
+    }
+}

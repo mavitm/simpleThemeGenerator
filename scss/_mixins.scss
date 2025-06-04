@@ -1,0 +1,66 @@
+/** BTN **/
+@mixin btn($bg: "--ui-primary", $text: "--ui-text") {
+  background-color: var(#{$bg});
+  color: var(#{$text});
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(#{$bg}-hover, var(#{$bg}));
+    color: var(#{$text}-hover, var(#{$text}));
+  }
+}
+
+@mixin btn-outline($bg: "--ui-primary", $text: "--ui-text") {
+  background-color: transparent;
+  color: var(#{$bg});
+  border: 1px solid var(#{$bg});
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: var(#{$bg}-hover, var(#{$bg}));
+    color: var(#{$text}-hover, var(#{$text}));
+  }
+}
+
+
+/** background **/
+@mixin linearGradient($bg) {
+  //background: linear-gradient(90deg, var(--#{$bg}-hover) 0%, var(--#{$bg}-hover) 50%, var(--#{$bg}-light) 100%);
+  background: linear-gradient(90deg, var(--#{$bg}-hover) 0%, var(--#{$bg}) 100%) left center;
+  background-size: 200% 100%;
+  transition: background-position 0.5s ease;
+  &.hover:hover {
+    background-position: right center;
+  }
+}
+
+
+/** text **/
+@mixin fluid-font($min: 16, $max: 32) {
+  font-size: clamp(#{$min}px, #{($min / 16)}rem + 1vw, #{$max}px);
+  transition: .3s ease;
+}
+
+/** clip **/
+@mixin clip-corner-top-right($offset: 20px) {
+  clip-path: polygon(
+                  0 0,
+                  calc(100% - #{$offset}) 0,
+                  100% #{$offset},
+                  100% 100%,
+                  0 100%
+  );
+}
+
+@mixin clip-oval-top($width: 100%, $height: 100%) {
+  clip-path: ellipse(#{$width} #{$height} at 50% 100%);
+}
+@mixin clip-oval-bottom($height: 80px, $width: 100%) {
+  clip-path: ellipse(#{$width} #{$height} at 50% 0%);
+}

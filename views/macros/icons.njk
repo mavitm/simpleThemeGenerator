@@ -1,0 +1,5 @@
+{% macro icon(name, class='') %}
+  <svg class="icon{% if class|wordcount > 0 %} {{ class }}{% endif %}">
+    <use href="/assets/icons/lucide-icons.svg?v=1#lucide-{{ name }}"></use>
+  </svg>
+{% endmacro %}

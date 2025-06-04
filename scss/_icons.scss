@@ -1,0 +1,40 @@
+.icon {
+  width: 1em; 
+  height: auto;
+  aspect-ratio: 1/1;
+  fill: currentColor;
+  vertical-align: -0.125em;
+  display: inline-block;
+  &.x2{
+    width: 2rem;
+  }
+  &.x3{
+    width: 3rem;
+  }
+  &.x4{
+    width: 4rem;
+  }
+}
+
+@keyframes lc-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lc-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.icon.spin {
+  animation: lc-spin 1s linear infinite;
+}
+
+.icon.pulse {
+  animation: lc-pulse 1s ease-in-out infinite;
+}

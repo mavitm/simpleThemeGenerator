@@ -29,3 +29,13 @@ or
 node arin.js create layout about
 ```
 > about: layout name
+
+
+# icons
+```shell
+npm run svg:sprite
+```
+or
+```shell
+node .\helpers\icons.js
+```

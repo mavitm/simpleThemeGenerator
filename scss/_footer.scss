@@ -1,0 +1,33 @@
+.main-footer{
+  background-color: var(--ui-surface);
+  padding: 100px 0 75px 0;
+  
+  .f-spacer{
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid var(--ui-surface-light);
+    border-top: 1px solid var(--ui-surface-hover);
+    margin: 30px 0;
+  }
+  .f-nav{
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 1399.98px) {
+      flex-direction: row;
+    }
+    @media (max-width: 991.98px) {
+      flex-direction: column;
+    }
+    .nav-item{
+      .nav-link{
+        transition: .3s ease;
+        color: var(--ui-text);
+      }
+      &.active, &:hover{
+        .nav-link{
+          color: var(--ui-primary);
+        }
+      }
+    }
+  }
+}

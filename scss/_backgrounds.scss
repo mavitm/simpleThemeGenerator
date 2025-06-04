@@ -1,0 +1,11 @@
+@each $key, $value in $themeColorMap {
+  .bg-#{$key} {
+    background-color: var(--#{$key}); 
+  }
+}
+
+@each $key, $value in $themeColorMap {
+  .bg-#{$key}-lg {
+    @include linearGradient($key)
+  }
+}

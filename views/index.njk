@@ -1,19 +1,17 @@
-{% extends "layouts/default.njk" %}
+{% put title %}Home page{% endput %}
 
-{% block title %}Ana Sayfa{% endblock %}
+<p>Bu içerik index.njk içinden geliyor.</p>
+<p>Bugünün tarihi: {{ date }}</p>
 
-{% block content %}
-    
-    <p>Bu içerik index.njk içinden geliyor.</p>
-    <p>Bugünün tarihi: {{ date }}</p>
-    
-    <button class="btn rip-btn">Tıkla</button>
-    
-{% endblock %}
+<button class="btn rip-btn">Tıkla</button>
 
-{% put test %}
-<b>ben çalışıyorum burdayım</b>
-{% endput %}
+<div class="w-100 p-5 bg-ui-primary-lg hover card-corner">
+    <div class="bg-gray-200 h-24 col-span-1">a</div>
+    <div class="bg-gray-200 h-24 col-span-1">b</div>
+    <div class="bg-gray-200 h-24 col-span-1">c</div>
+</div>
 
 
-
+<section class="section-fancy p-5 text-center bg-ui-surface my-5">
+    <h1>Deneme</h1>
+</section>

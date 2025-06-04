@@ -1,0 +1,54 @@
+{% import 'macros/icons.njk' as icons %}
+{% put title %}Icons{% endput %}
+
+<section class="mb-5">
+    <div class="container">
+        <h1>Icons</h1>
+    
+        <div class="my-3">
+            <label for="search-icons"> </label>
+            <input type="text" class="form-control" id="search-icons" placeholder="Search icons" data-search-target="icon-search">
+    
+        </div>
+    
+        <ul class="icon-list" id="icon-search">
+            {% for sym in allIcons %}
+                <li class="searchable view-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    data-bs-title="{{ sym }}"
+                    data-copy-text="lucide-{{ sym }}"
+                    data-key="{{ sym }}" 
+                    data-size="">
+                    <div data-bs-toggle="modal" data-bs-target="#icon-modal">
+                        {{ icons.icon(sym) }}
+                    </div>
+                </li>
+            {% else %}
+                <li>This would display if the 'item' collection were empty</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<div class="modal fade" id="icon-modal" tabindex="-1" aria-labelledby="icon-modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="icon-modalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="icon-size" class="mb-5">
+
+                </div>
+                <div class="html-codes">
+                    <label for="icon-codes" class="d-flex w-100">
+                        <strong>Codes</strong>
+                        <div id="icon-copy" class="hand ms-auto">{{ icons.icon('copy') }}</div>
+                    </label>
+                    <textarea id="icon-codes" rows="7" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

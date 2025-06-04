@@ -1,0 +1,41 @@
+.font-fluid-32 {
+  @include fluid-font(20, 32);
+}
+
+.font-fluid-24 {
+  @include fluid-font(16, 24);
+}
+
+.font-fluid-18 {
+  @include fluid-font(14, 18);
+}
+
+// Uygulama örneği
+h1.fluid {
+  @include fluid-font(28, 48);
+}
+
+h2.fluid {
+  @include fluid-font(24, 36);
+}
+
+h3.fluid {
+  @include fluid-font(20, 30);
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+//@for $i from 12 through 50 {
+//  .font-fluid-#{$i} {
+//    @include fluid-font($i - 6, $i);
+//  }
+//}
+
+@each $key, $value in $themeColorMap {
+  .text-#{$key} {
+    color: var(--#{$key});
+  }
+}

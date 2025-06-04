@@ -9,7 +9,7 @@ const livereload = require('livereload')
 const connectLivereload = require('connect-livereload')
 
 const { customizedNunjucks } = require('./helpers/custom-nunjucks')
-const { compileSass } = require('./helpers/scss')
+const { compileSass, compileJs } = require('./helpers/assets')
 const { capitalize } = require('./helpers/utils')
 
 const app = express()
@@ -43,10 +43,21 @@ const customExtensions = customizedNunjucks(nunjucksEnv)
 // SCSS watcher
 chokidar.watch('scss/**/*.scss').on('change', (filePath) => {
   console.log(`🎨 SCSS değişti: ${filePath}`)
-  compileSass()
-  liveReloadServer.refresh('/')
+  compileSass().then(() => {
+    liveReloadServer.refresh('/')
+  })
 })
-compileSass()
+compileSass().catch(err => console.log)
+
+chokidar.watch('source-js/**/*.js').on('change', (filePath) => {
+  console.log(`📦 JS değişti: ${filePath}`)
+  compileJs().then(() => {
+    liveReloadServer.refresh('/')
+  })
+})
+compileJs().catch(err => console.log)
+
+
 
 // Template değişiklikleri için watcher
 chokidar.watch('views/**/*.njk').on('change', (filePath) => {
@@ -69,7 +80,7 @@ app.get('/:page?', async (req, res) => {
   if (fs.existsSync(controllerPath)) {
     const ControllerClass = require(controllerPath)
     const controller = new ControllerClass(req, customExtensions)
-    const html = await controller.render()
+    const html = await controller.handle()
     res.send(html)
   } else {
     res.status(404).send(`<h1>404 - Controller '${className}' not found</h1>`)

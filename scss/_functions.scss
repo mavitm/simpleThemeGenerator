@@ -1,0 +1,3 @@
+@function generate-alpha($hex, $opacity) {
+  @return rgba($hex, $opacity);
+}
