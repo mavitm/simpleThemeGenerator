@@ -1,0 +1,15 @@
+/* Ripple effect */
+.rip-btn {
+  position: relative;
+  overflow: hidden;
+}
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  pointer-events: none;
+  will-change: transform, opacity;
+  z-index: 1;
+}
+
